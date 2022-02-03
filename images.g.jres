@@ -1,0 +1,17 @@
+{
+    "image2": {
+        "data": "hwQBAAEAAAAFAAAA",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "ray"
+    },
+    "image1": {
+        "data": "hwQBAAEAAAAJAAAA",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "player"
+    },
+    "*": {
+        "mimeType": "image/x-mkcd-f4",
+        "dataEncoding": "base64",
+        "namespace": "myImages"
+    }
+}
