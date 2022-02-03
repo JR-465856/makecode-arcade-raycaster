@@ -2,6 +2,8 @@ class Ray {
     private ang: Angle;
     public x: number;
     public y: number;
+    private intx: number;
+    private inty: number;
     constructor(newang: Angle, newx: number, newy: number) {
         this.ang = newang;
         this.x = newx;
@@ -28,11 +30,11 @@ class Ray {
         const magnitude = Math.sqrt(rx^2 + ry^2);
         const nx = rx / magnitude;
         const ny = ry / magnitude;
-        const vx = nx * 100;
-        const vy = ny * 100;
+        const vx = nx * 9999999;
+        const vy = ny * 9999999;
         // Ray sprite
-        let spr = new Sprite(assets.image`ray`);
-        scene.cameraFollowSprite(spr);
+        let rayKind = SpriteKind.create();
+        let spr = sprites.create(assets.image`ray`, rayKind);
         spr.setPosition(this.x, this.y);
         spr.setFlag(SpriteFlag.Invisible, true);
         spr.setFlag(SpriteFlag.DestroyOnWall, true);
@@ -41,25 +43,22 @@ class Ray {
         let hit = false;
         let fx: number;
         let fy: number;
-        console.log(
-            vx
-            + ", "
-            + vy
-        );
-        spr.t(function() {
+        let tl: tiles.Location;
+        // Handler
+        scene.onHitWall(rayKind, function(sprite: Sprite, location: tiles.Location) {
             fx = spr.x;
             fy = spr.y;
             hit = true;
-        })
-        
-        console.log("Waiting... ");
+            sprite.destroy();
+        });
         while (!hit) {
             pause(5);
         }
-        console.log("Found!");
+        // Return result
         return {
             x: fx,
-            y: fy
+            y: fy,
+            tileLocation: tl
         };
     }
 }

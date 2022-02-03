@@ -6,7 +6,7 @@ tiles.placeOnRandomTile(plr, assets.tile`spawn`);
 
 // Image initialization
 let render = image.create(160, 120);
-render.fill(0);
+render.fill(15);
 let renderS = new Sprite(render);
 renderS.setFlag(SpriteFlag.Ghost, true);
 renderS.setFlag(SpriteFlag.RelativeToCamera, true);
